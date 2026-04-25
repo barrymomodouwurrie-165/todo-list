@@ -14,7 +14,7 @@ const Index = () => {
   return (
     <div className="input-container">
       <h1>A TO-DO LIST</h1>
-      <input className="input" type="text" />
+      <input className="input" type="text" placeholder="Type a to-do"/>
       <button className="save-button">Save</button>
     </div>
   );
