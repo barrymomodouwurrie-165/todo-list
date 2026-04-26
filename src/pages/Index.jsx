@@ -36,8 +36,8 @@ const Index = ({ messageList, setMessageList }) => {
         onChange={TextChange}
         value={message}
       />
-      <input type="datetime" name="" id="" onChange={TimeChange} value={time} />
-      <input type="date" name="" id="" onChange={DateChange} value={date} />
+      <input className="time-input" type="time"  onChange={TimeChange} value={time} />
+      <input className="date-input" type="date"  onChange={DateChange} value={date} />
       <button className="save-button" onClick={SendButton}>
         Save
       </button>
