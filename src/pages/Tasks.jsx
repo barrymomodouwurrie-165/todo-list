@@ -11,16 +11,14 @@ const Tasks = ({ messageList, setMessageList }) => {
         messageList.map((item) => {
           return (
             <div className="message-container" key={item.id}>
-              <p className="para1">{item.message}</p>
-              <p className="para2">
-                {item.date} at {item.time}
-              </p>
-              <button className="update-button">Update</button>
+              <p className="para1">Task: {item.message}</p>
+              <p className="para2">Date: {item.date}</p>
+              <p className="para2">Time: {item.time}</p>
               <button
                 className="delete-button"
-                onClick={()=>DeleteTask(item.id)}
+                onClick={() => DeleteTask(item.id)}
               >
-                Delete
+                Delete Task
               </button>
             </div>
           );
