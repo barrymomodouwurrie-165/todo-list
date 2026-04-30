@@ -9,17 +9,21 @@ function App() {
       id: 1,
       message: "Eat breakfast",
       time: "9:00",
-      date: "27/04/2026",
+      date: "2026-04-07",
+    },
+    {
+      id: 2,
+      message: "Eat lunch",
+      time: "12:00",
+      date: "2026-04-07",
     },
   ]);
+  
 
   return (
     <>
-      <Index
-        messageList={messageList}
-        setMessageList={setMessageList}
-      />
-      <Tasks MessageList={messageList} />
+      <Index messageList={messageList} setMessageList={setMessageList} />
+      <Tasks messageList={messageList} setMessageList={setMessageList}  />
     </>
   );
 }

@@ -5,17 +5,21 @@ const Index = ({ messageList, setMessageList }) => {
   const [date, setDate] = useState("");
    const [message, setMessage] = useState("");
   const SendButton = () => {
-    setMessageList([
-      ...messageList,
-      {
-        id: crypto.randomUUID,
-        message: message,
-        time: time,
-        date: date,
-      },
-    ]);
-    setMessage("");
-    console.log(messageList);
+    if (message == "" || time == "" || date == "") {
+      console.log("Fill all inputs")
+    } else {
+      setMessageList([
+        ...messageList,
+        {
+          id: crypto.randomUUID(),
+          message: message,
+          time: time,
+          date: date,
+        },
+      ]);
+      setMessage("");
+    }
+    
   };
   const TextChange = (e) => {
     setMessage(e.target.value);
