@@ -43,7 +43,7 @@ const Index = ({ messageList, setMessageList }) => {
       <input className="time-input" type="time"  onChange={TimeChange} value={time} />
       <input className="date-input" type="date"  onChange={DateChange} value={date} />
       <button className="save-button" onClick={SendButton}>
-        Save
+        Add Task
       </button>
     </div>
   );
