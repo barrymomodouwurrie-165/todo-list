@@ -1,5 +1,5 @@
 body {
-  background-color: gray;
+  background-color: rgba(225, 220, 220, 0.32);
 }
 .input-container,
 .message-container {
@@ -39,6 +39,16 @@ body {
 }
 h1 {
   margin-left: 70px;
+}
+.mark-day-container{
+  display: flex;
+  align-items:center;
+
+}
+.mark-img{
+ height: 50px;
+ width: 60px;
+
 }
 .message-container {
   display: flex;

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import dayjs from "dayjs";
 
 const Index = ({ messageList, setMessageList }) => {
   const [time, setTime] = useState("");
@@ -6,18 +7,22 @@ const Index = ({ messageList, setMessageList }) => {
    const [message, setMessage] = useState("");
   const SendButton = () => {
     if (message == "" || time == "" || date == "") {
-      console.log("Fill all inputs")
+      window.alert("Fill all inputs");
     } else {
+     const addedDay = dayjs().format("YYYY-MM-DD HH:mm");
       setMessageList([
         ...messageList,
         {
           id: crypto.randomUUID(),
+          addedDay: addedDay,
           message: message,
           time: time,
           date: date,
         },
       ]);
       setMessage("");
+      setTime("")
+      setDate("")
     }
     
   };

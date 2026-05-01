@@ -5,8 +5,7 @@ import Tasks from "./pages/Tasks";
 
 function App() {
   const [messageList, setMessageList] = useState(
-    JSON.parse(localStorage.getItem("tasks")) ||
-      [],
+    JSON.parse(localStorage.getItem("tasks")) || [],
   );
 
   useEffect(() => {
