@@ -1,14 +1,48 @@
-import express from "express"
+import express from "express";
+import task from "../models/Task.js";
+import Task from "../models/Task.js";
+import dayjs from "dayjs";
 
-const router = express.Router()
+const router = express.Router();
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    res.status(200).send("tasks successfully sent. Thank you!");
+    const task = await Task.find();
+    if (task) {
+      res.status(200).json(task);
+    } else {
+      res.json({ message: "Task failed" });
+    }
   } catch (error) {
-    console.error("tasks not send");
+    res.status(500).json({ message: "Internal error" });
   }
-})
+});
 
+router.post("/", async (req, res) => {
+  try {
+    const { task, time, date } = req.body;
+    const createdTimeMs = dayjs().valueOf();
+    const newTask = new Task({ task, time, date, createdTimeMs });
+    const tasks = await newTask.save();
+    if (tasks) {
+      res.status(201).json(tasks);
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Internal error" });
+  }
+});
 
-export default router
+router.delete("/:id", async (req, res) => {
+  try {
+    const deletedTask = await Task.findByIdAndDelete(req.params.id);
+    if (!deletedTask) {
+      res.json({ message: "Task failed to delete" });
+    } else {
+      res.status(200).json({ message: "Task deleted sucessfully" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Internal error" });
+  }
+});
+
+export default router;
