@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const task = await Task.find();
+    const task = await Task.find().sort({createdAt: -1});
     if (task) {
       res.status(200).json(task);
     } else {
