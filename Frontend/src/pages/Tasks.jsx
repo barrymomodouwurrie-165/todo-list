@@ -1,10 +1,11 @@
 import { Fragment } from "react";
-import markPic  from "../assets/mark-round.jpg"
+import markPic from "../assets/mark-round.jpg";
+import axios from "axios";
 
-const Tasks = ({ messageList, setMessageList }) => {
-  const DeleteTask = (id) => {
-    const taskId = messageList.filter((task) => task.id !== id);
-    setMessageList(taskId);
+const Tasks = ({ messageList, getTasks }) => {
+  const DeleteTask = async (id) => {
+    await axios.delete(`http://localhost:4000/api/tasks/${id}`);
+    getTasks()
   };
   return (
     <Fragment>

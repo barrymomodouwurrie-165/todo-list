@@ -15,14 +15,10 @@ function App() {
     getTasks();
   }, []);
 
-  // useEffect(() => {
-  //   localStorage.setItem("tasks", JSON.stringify(messageList));
-  // }, [messageList]);
-
   return (
     <>
       <Index getTasks={getTasks} />
-      <Tasks messageList={messageList} setMessageList={setMessageList} />
+      <Tasks messageList={messageList} setMessageList={setMessageList} getTasks={getTasks} />
     </>
   );
 }
