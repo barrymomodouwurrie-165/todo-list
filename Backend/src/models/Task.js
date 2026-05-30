@@ -14,7 +14,7 @@ const tasksModel = new mongoose.Schema(
       type: String,
       required: true,
     },
-    createdTimeMs: {
+    createdTime: {
       type: String,
     },
   },

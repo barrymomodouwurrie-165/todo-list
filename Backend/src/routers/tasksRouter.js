@@ -20,9 +20,9 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { task, time, date } = req.body;
-    const createdTimeMs = dayjs().valueOf();
-    const newTask = new Task({ task, time, date, createdTimeMs });
+    const { task, time, date, createdTime } = req.body;
+    // const createdTime = dayjs().valueOf();
+    const newTask = new Task({ task, time, date, createdTime });
     const tasks = await newTask.save();
     if (tasks) {
       res.status(201).json(tasks);
