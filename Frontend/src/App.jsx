@@ -2,19 +2,26 @@ import { useEffect, useState } from "react";
 import Index from "./pages/Index";
 import "./pages/style.css";
 import Tasks from "./pages/Tasks";
+import axios from "axios";
 
 function App() {
-  const [messageList, setMessageList] = useState(
-    JSON.parse(localStorage.getItem("tasks")) || [],
-  );
+  const [messageList, setMessageList] = useState([]);
 
+  const getTasks = async () => {
+    const response = await axios.get("http://localhost:4000/api/tasks");
+    setMessageList(response.data);
+  };
   useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(messageList));
-  }, [messageList]);
+    getTasks();
+  }, []);
+
+  // useEffect(() => {
+  //   localStorage.setItem("tasks", JSON.stringify(messageList));
+  // }, [messageList]);
 
   return (
     <>
-      <Index messageList={messageList} setMessageList={setMessageList} />
+      <Index getTasks={getTasks} />
       <Tasks messageList={messageList} setMessageList={setMessageList} />
     </>
   );

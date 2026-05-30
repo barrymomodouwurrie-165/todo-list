@@ -11,17 +11,17 @@ const Tasks = ({ messageList, setMessageList }) => {
       {messageList &&
         messageList.map((item) => {
           return (
-            <div className="message-container" key={item.id}>
+            <div className="message-container" key={item._id}>
               <div className="mark-day-container">
                 <img src={markPic} alt="" className="mark-img" />
-                {item.addedDay}
+                {item.createdTime}
               </div>
-              <p className="para1">Task: {item.message}</p>
+              <p className="para1">Task: {item.task}</p>
               <p className="para2">Date: {item.date}</p>
               <p className="para2">Time: {item.time}</p>
               <button
                 className="delete-button"
-                onClick={() => DeleteTask(item.id)}
+                onClick={() => DeleteTask(item._id)}
               >
                 Delete Task
               </button>

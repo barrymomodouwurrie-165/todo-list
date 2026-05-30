@@ -1,31 +1,11 @@
 import { useState } from "react";
 import dayjs from "dayjs";
+import axios from "axios";
 
-const Index = ({ messageList, setMessageList }) => {
+const Index = ({getTasks}) => {
   const [time, setTime] = useState("");
   const [date, setDate] = useState("");
-   const [message, setMessage] = useState("");
-  const SendButton = () => {
-    if (message == "" || time == "" || date == "") {
-      window.alert("Fill all inputs");
-    } else {
-     const addedDay = dayjs().format("YYYY-MM-DD HH:mm");
-      setMessageList([
-        ...messageList,
-        {
-          id: crypto.randomUUID(),
-          addedDay: addedDay,
-          message: message,
-          time: time,
-          date: date,
-        },
-      ]);
-      setMessage("");
-      setTime("")
-      setDate("")
-    }
-    
-  };
+  const [message, setMessage] = useState("");
   const TextChange = (e) => {
     setMessage(e.target.value);
   };
@@ -34,6 +14,26 @@ const Index = ({ messageList, setMessageList }) => {
   };
   const DateChange = (e) => {
     setDate(e.target.value);
+  };
+  const SendButton = async () => {
+    if (message == "" || time == "" || date == "") {
+      window.alert("Fill all inputs");
+    }
+    const createdTime = dayjs().format("MMMM D, YYYY  HH:mm A");
+    try {
+      await axios.post("http://localhost:4000/api/tasks", {
+        task: message,
+        time,
+        date,
+        createdTime,
+      });
+      setMessage("");
+      setTime("");
+      setDate("");
+      getTasks()
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div className="input-container">
@@ -45,8 +45,18 @@ const Index = ({ messageList, setMessageList }) => {
         onChange={TextChange}
         value={message}
       />
-      <input className="time-input" type="time"  onChange={TimeChange} value={time} />
-      <input className="date-input" type="date"  onChange={DateChange} value={date} />
+      <input
+        className="time-input"
+        type="time"
+        onChange={TimeChange}
+        value={time}
+      />
+      <input
+        className="date-input"
+        type="date"
+        onChange={DateChange}
+        value={date}
+      />
       <button className="save-button" onClick={SendButton}>
         Add Task
       </button>
